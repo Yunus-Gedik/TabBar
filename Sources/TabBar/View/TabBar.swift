@@ -114,6 +114,7 @@ public struct TabBar<TabItem: Tabbable, Content: View>: View {
                 .edgesIgnoringSafeArea(.bottom)
                 .visibility(self.visibility)
             }
+         			.ignoresSafeArea(.keyboard)
         }
         .onPreferenceChange(TabBarPreferenceKey.self) { value in
             self.items = value
