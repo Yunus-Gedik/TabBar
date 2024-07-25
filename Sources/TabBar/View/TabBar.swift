@@ -97,6 +97,32 @@ public struct TabBar<TabItem: Tabbable, Content: View>: View {
         }
     }
     
+    public var body: some View {
+        VStack {
+            self.content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .environmentObject(self.selectedItem)
+            
+			Spacer(minLength: 0)
+			
+            GeometryReader { geometry in
+                VStack {
+                    Spacer()
+                    
+                    self.tabBarStyle.tabBar(with: geometry) {
+                        .init(self.tabItems)
+                    }
+                }
+                .edgesIgnoringSafeArea(.bottom)
+                .visibility(self.visibility)
+            }
+			.ignoresSafeArea(.keyboard)
+        }
+        .onPreferenceChange(TabBarPreferenceKey.self) { value in
+            self.items = value
+        }
+    }
+    
 	public var body: some View {
 		GeometryReader { geometry in
 			ZStack {
