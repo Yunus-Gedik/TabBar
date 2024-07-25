@@ -102,9 +102,9 @@ public struct TabBar<TabItem: Tabbable, Content: View>: View {
 		GeometryReader { geometry in
 			ZStack {
 				self.content
-					.frame(maxWidth: .infinity, maxHeight: .infinity)
 					.environmentObject(self.selectedItem)
 					.padding(.bottom, 50 + geometry.safeAreaInsets.bottom)
+					.frame(maxWidth: .infinity, maxHeight: .infinity)
 				
 				VStack {
 					Spacer()
